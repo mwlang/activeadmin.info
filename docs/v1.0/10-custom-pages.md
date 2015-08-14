@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: v1.0
 ---
 # Custom Pages
 
@@ -50,7 +50,7 @@ end
 
 ## Customize the Menu
 
-See the [Menu](/docs//2-resource-customization.html#customize-the-menu) documentation.
+See the [Menu](/docs/v1.0/2-resource-customization.html#customize-the-menu) documentation.
 
 ## Customize the Namespace
 
@@ -66,7 +66,7 @@ ActiveAdmin.register_page "Calendar", namespace: false
 
 ## Add a Sidebar
 
-See the [Sidebars](/docs//7-sidebars.html) documentation.
+See the [Sidebars](/docs/v1.0/7-sidebars.html) documentation.
 
 ## Add an Action Item
 

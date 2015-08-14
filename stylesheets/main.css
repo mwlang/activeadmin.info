@@ -689,6 +689,25 @@ body #nav a {
   color: #8b9091;
   margin-left: 20px;
 }
+
+body #version-nav {
+  font-family: 'Yanone Kaffeesatz', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+  text-transform: uppercase;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  text-align: left;
+  width: 270px;
+}
+/* line 82, ../_sass/main.scss */
+body #version-nav a {
+  text-decoration: none;
+  color: #8b9091;
+  margin-left: 10px;
+}
+
 /* line 90, ../_sass/main.scss */
 body #features {
   padding-top: 0;
