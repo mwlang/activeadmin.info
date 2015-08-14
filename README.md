@@ -14,6 +14,9 @@ A rake task syncs documentation from the activeadmin/docs to activeadmin.info/do
 
 To sync the documentation:
 
-* Check out activeadmin.git and activeadmin.info.git to a shared sub-folder
+* Check out activeadmin.info.git
 * switch to the activeadmin.info folder
 * run: rake update
+
+This will clone activeadmin.git to the repo sub-folder (or git update it) and then update the docs 
+folder with repo/docs, changing *.md links as appropriate.
