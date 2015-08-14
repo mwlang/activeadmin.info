@@ -9,10 +9,10 @@ you to build a compelling interface into your data for the admin staff.
 
 Built in, Active Admin has the following index renderers:
 
-* *Table*: A table drawn with each row being a resource ([View Table Docs](3-index-pages/index-as-table.md))
-* *Grid*: A set of rows and columns each cell being a resource ([View Grid Docs](3-index-pages/index-as-grid.md))
-* *Blocks*: A set of rows (not tabular) each row being a resource ([View Blocks Docs](3-index-pages/index-as-block.md))
-* *Blog*: A title and body content, similar to a blog index ([View Blog Docs](3-index-pages/index-as-blog.md))
+* *Table*: A table drawn with each row being a resource ([View Table Docs](3-index-pages/index-as-table.html))
+* *Grid*: A set of rows and columns each cell being a resource ([View Grid Docs](3-index-pages/index-as-grid.html))
+* *Blocks*: A set of rows (not tabular) each row being a resource ([View Blocks Docs](3-index-pages/index-as-block.html))
+* *Blog*: A title and body content, similar to a blog index ([View Blog Docs](3-index-pages/index-as-blog.html))
 
 All index pages also support scopes, filters, pagination, action items, and
 sidebar sections.
@@ -54,7 +54,7 @@ end
 ## Custom Index
 
 Active Admin does not limit the index page to be a table, block, blog or grid.
-If you've created your own [custom index](3-index-pages/custom-index.md) page it
+If you've created your own [custom index](3-index-pages/custom-index.html) page it
 can be included by setting `:as` to the class of the index component you created.
 
 ```ruby

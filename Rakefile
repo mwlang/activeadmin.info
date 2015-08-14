@@ -9,12 +9,17 @@ def update_files sub_path
   website_docs_path = File.expand_path File.join('.', sub_path)
   Dir.glob(File.join(project_docs_path, '*.md')).each do |fn|
     new_fn = File.join(website_docs_path, File.basename(fn))
-    puts [fn, new_fn].join(" => ")
-    content = File.read fn
+    content = replace_md_links(File.read fn)
     File.open(new_fn, 'w') do |of|
       of.puts "---\nlayout: default\n---"
       of.puts content
     end
   end
-  
+end
+
+def replace_md_links content
+  content.scan(/\[[^\(]+\((.+\.md)\)/).flatten.each do |link|
+    content.gsub!(link, link.gsub(/\.md\z/, '.html'))
+  end
+  content
 end

@@ -66,7 +66,7 @@ ActiveAdmin.register_page "Calendar", namespace: false
 
 ## Add a Sidebar
 
-See the [Sidebars](7-sidebars.md) documentation.
+See the [Sidebars](7-sidebars.html) documentation.
 
 ## Add an Action Item
 
