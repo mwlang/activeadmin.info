@@ -85,7 +85,7 @@ class OnlyMyAccount < ActiveAdmin::AuthorizationAdapter
   end
 
   def scope_collection(collection, action = Auth::READ)
-    collection.where(:account_id => user.account_id)
+    collection.where(account_id: user.account_id)
   end
 
 end
@@ -104,7 +104,7 @@ class OnlyDashboard < ActiveAdmin::AuthorizationAdapter
   def authorized?(action, subject = nil)
     case subject
     when ActiveAdmin::Page
-      action == :read && subject.name == "Dashboard"
+      action == :read && subject.name == "Dashboard" && subject.namespace.name == :admin
     else
       false
     end
@@ -164,7 +164,7 @@ ActiveAdmin.register Post do
     redirect_to [:admin, post]
   end
 
-  action_item :publish, :only => :show do
+  action_item :publish, only: :show do
     if !post.published? && authorized?(:publish, post)
       link_to "Publish", publish_admin_post_path(post), method: :post
     end
@@ -205,7 +205,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def access_denied(exception)
-    redirect_to admin_organizations_path, :alert => exception.message
+    redirect_to admin_organizations_path, alert: exception.message
   end
 end
 ```
@@ -228,8 +228,8 @@ class Ability
   def initialize(user)
     can :manage, Post
     can :read, User
-    can :manage, User, :id => user.id
-    can :read, ActiveAdmin::Page, :name => "Dashboard"
+    can :manage, User, id: user.id
+    can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: :admin
   end
 
 end

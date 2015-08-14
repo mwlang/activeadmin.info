@@ -24,7 +24,7 @@ your desired batch action on all of them:
 ```ruby
 ActiveAdmin.register Post do
   batch_action :flag do |ids|
-    Post.find(ids).each do |post|
+    batch_action_collection.find(ids).each do |post|
       post.flag! :hot
     end
     redirect_to collection_path, alert: "The posts have been flagged."
@@ -159,7 +159,7 @@ Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you 
 ```coffee
 if $('body.admin_users').length
   $('a[data-prompt]').click ->
-    AA.modal_dialog $(@).data('prompt'), comment: 'textarea',
+    ActiveAdmin.modal_dialog $(@).data('prompt'), comment: 'textarea',
       (inputs)=>
         $.post "/admin/users/#{$(@).data 'id'}/change_state",
           comment: inputs.comment, state: $(@).data('state'),

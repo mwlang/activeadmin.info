@@ -58,6 +58,8 @@ index do
 end
 ```
 
+## Defining Actions
+
 To setup links to View, Edit and Delete a resource, use the `actions` method:
 
 ```ruby
@@ -75,7 +77,7 @@ index do
   selectable_column
   column :title
   actions do |post|
-    link_to "Preview", admin_preview_post_path(post), class: "member_link"
+    item "Preview", admin_preview_post_path(post), class: "member_link"
   end
 end
 ```
@@ -86,7 +88,18 @@ Or forego the default links entirely:
 index do
   column :title
   actions defaults: false do |post|
-    link_to "View", admin_post_path(post)
+    item "View", admin_post_path(post)
+  end
+end
+```
+
+Or append custom action with custom html via arbre:
+
+```ruby
+index do
+  column :title
+  actions do |post|
+    a link_to "View", admin_post_path(post)
   end
 end
 ```

@@ -33,9 +33,11 @@ end
 Any form field that sends multiple values (such as a HABTM association, or an array attribute)
 needs to pass an empty array to `permit_params`:
 
+If your HABTM is `roles`, you should permit `role_ids: []`
+
 ```ruby
 ActiveAdmin.register Post do
-  permit_params :title, :content, :publisher_id, roles: []
+  permit_params :title, :content, :publisher_id, role_ids: []
 end
 ```
 
@@ -286,15 +288,25 @@ ActiveAdmin.register Post do
 end
 ```
 
-## Customizing resource retrieval
+## Eager loading
 
 A common way to increase page performance is to elimate N+1 queries by eager loading associations:
 
 ```ruby
 ActiveAdmin.register Post do
+  includes :author, :categories
+end
+```
+
+## Customizing resource retrieval
+
+If you need to customize the collection properties, you can overwrite the `scoped_collection` method.
+
+```ruby
+ActiveAdmin.register Post do
   controller do
     def scoped_collection
-      super.includes :author, :categories
+      end_of_association_chain.where(visibility: true)
     end
   end
 end
@@ -329,7 +341,7 @@ ActiveAdmin.register Ticket do
 end
 ```
 
-Projects will be available as usual and tickets will be availble by visiting
+Projects will be available as usual and tickets will be available by visiting
 `/admin/projects/1/tickets` assuming that a Project with the id of 1 exists.
 Active Admin does not add "Tickets" to the global navigation because the routes
 can only be generated when there is a project id.
@@ -360,7 +372,7 @@ end
 In some cases (like Projects), there are many sub resources and you would
 actually like the global navigation to switch when the user navigates "into" a
 project. To accomplish this, Active Admin stores the `belongs_to` resources in a
-seperate menu which you can use if you so wish. To use:
+separate menu which you can use if you so wish. To use:
 
 ```ruby
 ActiveAdmin.register Ticket do
@@ -387,5 +399,14 @@ ActiveAdmin.register Ticket do
   navigation_menu do
     authorized?(:manage, SomeResource) ? :project : :restricted_menu
   end
+end
+```
+
+If you still want your `belongs_to` resources to be available in the default menu
+and through non-nested routes, you can use the `:optional` option. For example:
+
+```ruby
+ActiveAdmin.register Ticket do
+  belongs_to :project, optional: true
 end
 ```
