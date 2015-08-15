@@ -41,7 +41,7 @@ def clone_active_admin_repo
   if File.exist? repo_path
     git "pull"
   else
-    git "clone git@github.com:activeadmin/activeadmin.git #{repo_path}"
+     `git clone git@github.com:activeadmin/activeadmin.git #{repo_path}`
   end
 end
 
